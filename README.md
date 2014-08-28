@@ -1,6 +1,6 @@
 Chat
 ===========
 
-Chat em NodeJS com Websocket
+Chat em NodeJS com Socket.io
 
 Disponível aqui.
