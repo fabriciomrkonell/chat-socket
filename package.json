@@ -1,6 +1,6 @@
 {
-  "name": "Chat",
-  "version": "1",
+  "name": "chat",
+  "version": "0.0.1",
   "description": "Chat em NodeJS com Socket.io",
   "dependencies": {
     "express": "4.3.1",
