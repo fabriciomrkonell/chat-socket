@@ -1,4 +1,4 @@
-angular.module("appIO", []).controller('ctrlIO', ['$scope', function ($scope) {
+angular.module("appIO", []).controller('ctrlIO', ['$scope', '$timeout', function ($scope, $timeout) {
 
   var socket = io();
 
@@ -6,7 +6,8 @@ angular.module("appIO", []).controller('ctrlIO', ['$scope', function ($scope) {
     view: false,
     nome: "",
     mensagem: "",
-    historico: []
+    historico: [],
+    usuarios: []
   });
 
   $scope.salvar = function(){
@@ -14,6 +15,7 @@ angular.module("appIO", []).controller('ctrlIO', ['$scope', function ($scope) {
       view: true,
       historico: []
     });
+    socket.emit('login', $scope.nome);
   };
 
   $scope.validar = function(){
@@ -37,6 +39,17 @@ angular.module("appIO", []).controller('ctrlIO', ['$scope', function ($scope) {
     }
     $scope.historico.push(data);
     $scope.$apply();
+  });
+
+  socket.on('login', function(data){
+    if(data == $scope.nome){
+      return false;
+    }
+    $scope.usuarios.push(data);
+    $scope.$apply();
+    $timeout(function(){
+      $scope.usuarios.splice(0, 1);
+    }, 5000);
   });
 
 }]);
