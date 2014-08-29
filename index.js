@@ -14,6 +14,9 @@ io.on('connection', function(socket){
   socket.on('chat message', function(msg){
     io.emit('chat message', msg);
   });
+  socket.on('login', function(nome){
+    io.emit('login', nome);
+  });
 });
 
 http.listen(3000, function(){
